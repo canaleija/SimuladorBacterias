@@ -5,7 +5,7 @@
  */
 package Bacterias;
 
-import Data.Bacteria;
+import interfaces.Bacteria;
 import Data.Ellipse2dAdapter;
 import Data.Rango;
 import java.awt.Color;
