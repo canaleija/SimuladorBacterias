@@ -20,7 +20,7 @@ import java.util.Random;
  *
  * @author CANALEIJA
  */
-public class EscherichiaColi implements Bacteria {
+public class EscherichiaColi implements Bacteria{
 
     private Point2D posicionFinal;
     private Shape recipiente, bacteria;
@@ -30,55 +30,58 @@ public class EscherichiaColi implements Bacteria {
     public EscherichiaColi() {
         definirColor(null);
         definirTamaño(1);
-        definirPosicion(new Dimension(300, 300));
+        definirPosicion(new Dimension(300,300));
         definirForma();
-
+        
     }
 
+     
+    
+    
     @Override
     public void definirForma() {
-        this.bacteria = new Ellipse2dAdapter.Float((float) this.getPosicionFinal().getX(), 
-                (float) this.getPosicionFinal().getY(), 
-                (float) this.diametro, 
-                (float) this.diametro);
-
+        this.bacteria = new Ellipse2dAdapter.Float((float)this.getPosicionFinal().getX(),(float)this.getPosicionFinal().getY(),(float) this.diametro,(float) this.diametro);
+        
     }
 
     @Override
     public void definirPosicion(Dimension dimensionCaja) {
-        // DECLARAMOS X y Y
-        int x, y;
-        // construir la el elipse
-        this.recipiente = new Ellipse2D.Float(0, 0, dimensionCaja.width, dimensionCaja.height);
-        Random ran = new Random();
-        x = ran.nextInt((int) dimensionCaja.getWidth());
-        y = ran.nextInt((int) dimensionCaja.getHeight());
-        Point2D aux = new Point(x, y * -1);
-        // GENERA PUNTOS HASTA ECONTRAR PUNTO VALIDO
-        while (!validar(aux)) {
-            // GENERAMOS UN NUEVO PUNTO ALEATORIO
-            ran = new Random();
-            x = ran.nextInt((int) dimensionCaja.getWidth());
-            y = ran.nextInt((int) dimensionCaja.getHeight());
-            aux = new Point(x, y);
-
-        }
-        // GUARDAMOS/ASIGNAMOS EL PUNTO VALIDO
-        this.posicionFinal = aux;
+     // DECLARAMOS X y Y
+     int x,y;
+     // construir la el elipse
+     this.recipiente = new Ellipse2D.Float(0,0, dimensionCaja.width, dimensionCaja.height);
+     Random ran = new Random();
+     x = ran.nextInt((int)dimensionCaja.getWidth());
+     y = ran.nextInt((int)dimensionCaja.getHeight());
+     Point2D aux = new Point(x, y*-1); 
+     // GENERA PUNTOS HASTA ECONTRAR PUNTO VALIDO
+     while(!validar(aux)){
+     // GENERAMOS UN NUEVO PUNTO ALEATORIO
+     ran = new Random();
+     x = ran.nextInt((int)dimensionCaja.getWidth());
+     y = ran.nextInt((int)dimensionCaja.getHeight());
+     aux = new Point(x, y); 
+          
+     }
+     // GUARDAMOS/ASIGNAMOS EL PUNTO VALIDO
+     this.posicionFinal = aux;
+  
+        
     }
 
     @Override
     public void definirColor(Rango rangoColor) {
-        // definimos en colores negros
-        // Color colorInicial = new Color(0);
-        this.colorBacteria = new Color(255);
+       // definimos en colores negros
+       // Color colorInicial = new Color(0);
+      this.colorBacteria = new Color(255);
+             
     }
 
     @Override
     public void definirTamaño(double diametro) {
-        // definiendo el diametro del elipse
+       // definiendo el diametro del elipse
         this.diametro = diametro;
-
+        
     }
 
     @Override
@@ -87,20 +90,23 @@ public class EscherichiaColi implements Bacteria {
     }
 
     private boolean validar(Point2D point) {
-        if (this.recipiente.contains(point)) {
-            return true;
-        } else {
-            return false;
+   if(this.recipiente.contains(point)){ 
+             return true;
+     } else{
+        return false;
         }
+     
+    
+    
     }
 
     @Override
     public boolean equals(Object obj) {
-        Point aux = (Point) obj;
-        if (aux.getX() == this.getPosicionFinal().getX() && aux.getY() == this.getPosicionFinal().getY()) {
-            return true;
-        }
-        return false;
+       Point aux = (Point)obj;
+       if ( aux.getX()== this.getPosicionFinal().getX() && aux.getY()==this.getPosicionFinal().getY()){
+       return true;
+       }
+       return false;
     }
 
     /**
@@ -109,4 +115,7 @@ public class EscherichiaColi implements Bacteria {
     public Point2D getPosicionFinal() {
         return posicionFinal;
     }
+    
+    
+    
 }
