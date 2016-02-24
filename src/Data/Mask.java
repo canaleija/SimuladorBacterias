@@ -12,7 +12,7 @@ package Data;
 public class Mask {
 
   
-    public enum Mascaras { TRESXTRES}
+    public enum Mascaras {TRESXTRES}
     
     
     private int mask[][];
@@ -62,7 +62,6 @@ public class Mask {
     public int getN() {
         return n;
     }
-
       
       private void construirMascara3x3() {
         this.mask = new int[][]{{0,1,0},{1,1,1},{0,1,0}};

@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -95,9 +97,7 @@ public class EscherichiaColi implements Bacteria{
      } else{
         return false;
         }
-     
-    
-    
+       
     }
 
     @Override
@@ -106,7 +106,7 @@ public class EscherichiaColi implements Bacteria{
        if ( aux.getX()== this.getPosicionFinal().getX() && aux.getY()==this.getPosicionFinal().getY()){
        return true;
        }
-       return false;
+       return false;       
     }
 
     /**
@@ -115,7 +115,6 @@ public class EscherichiaColi implements Bacteria{
     public Point2D getPosicionFinal() {
         return posicionFinal;
     }
-    
-    
-    
+ 
 }
+

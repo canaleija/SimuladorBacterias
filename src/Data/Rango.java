@@ -12,9 +12,9 @@ import java.awt.Color;
  * @author CANALEIJA
  */
 public class Rango {
-    
-   private Color colorInicial;
-   private Color colorFinal;
+
+    private Color colorInicial;
+    private Color colorFinal;
 
     public Rango(Color colorInicial, Color colorFinal) {
         this.colorInicial = colorInicial;
@@ -48,6 +48,5 @@ public class Rango {
     public void setColorFinal(Color colorFinal) {
         this.colorFinal = colorFinal;
     }
-   
-    
 }
+
