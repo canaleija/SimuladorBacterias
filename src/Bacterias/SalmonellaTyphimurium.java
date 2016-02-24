@@ -20,14 +20,14 @@ import java.util.Random;
  *
  * @author CANALEIJA
  */
-public class EscherichiaColi implements Bacteria {
+public class SalmonellaTyphimurium implements Bacteria {
 
     private Point2D posicionFinal;
     private Shape recipiente, bacteria;
     private double diametro;
     private Color colorBacteria;
 
-    public EscherichiaColi() {
+    public SalmonellaTyphimurium() {
         definirColor(null);
         definirTamaño(1);
         definirPosicion(new Dimension(300, 300));
@@ -41,7 +41,6 @@ public class EscherichiaColi implements Bacteria {
                 (float) this.getPosicionFinal().getY(), 
                 (float) this.diametro, 
                 (float) this.diametro);
-
     }
 
     @Override
@@ -78,7 +77,6 @@ public class EscherichiaColi implements Bacteria {
     public void definirTamaño(double diametro) {
         // definiendo el diametro del elipse
         this.diametro = diametro;
-
     }
 
     @Override

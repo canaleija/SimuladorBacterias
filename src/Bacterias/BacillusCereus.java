@@ -20,14 +20,14 @@ import java.util.Random;
  *
  * @author CANALEIJA
  */
-public class EscherichiaColi implements Bacteria {
+public class BacillusCereus implements Bacteria {
 
     private Point2D posicionFinal;
     private Shape recipiente, bacteria;
     private double diametro;
     private Color colorBacteria;
 
-    public EscherichiaColi() {
+    public BacillusCereus() {
         definirColor(null);
         definirTamaño(1);
         definirPosicion(new Dimension(300, 300));
@@ -37,11 +37,10 @@ public class EscherichiaColi implements Bacteria {
 
     @Override
     public void definirForma() {
-        this.bacteria = new Ellipse2dAdapter.Float((float) this.getPosicionFinal().getX(), 
-                (float) this.getPosicionFinal().getY(), 
-                (float) this.diametro, 
+        this.bacteria = new Ellipse2dAdapter.Float((float) this.getPosicionFinal().getX(),
+                (float) this.getPosicionFinal().getY(),
+                (float) this.diametro,
                 (float) this.diametro);
-
     }
 
     @Override
@@ -72,6 +71,7 @@ public class EscherichiaColi implements Bacteria {
         // definimos en colores negros
         // Color colorInicial = new Color(0);
         this.colorBacteria = new Color(255);
+
     }
 
     @Override

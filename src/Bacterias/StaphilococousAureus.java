@@ -20,14 +20,14 @@ import java.util.Random;
  *
  * @author CANALEIJA
  */
-public class EscherichiaColi implements Bacteria {
+public class StaphilococousAureus implements Bacteria {
 
     private Point2D posicionFinal;
     private Shape recipiente, bacteria;
     private double diametro;
     private Color colorBacteria;
 
-    public EscherichiaColi() {
+    public StaphilococousAureus() {
         definirColor(null);
         definirTamaño(1);
         definirPosicion(new Dimension(300, 300));
@@ -72,6 +72,7 @@ public class EscherichiaColi implements Bacteria {
         // definimos en colores negros
         // Color colorInicial = new Color(0);
         this.colorBacteria = new Color(255);
+
     }
 
     @Override
