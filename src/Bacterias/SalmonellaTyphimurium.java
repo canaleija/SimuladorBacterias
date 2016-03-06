@@ -37,9 +37,9 @@ public class SalmonellaTyphimurium implements Bacteria {
 
     @Override
     public void definirForma() {
-        this.bacteria = new Ellipse2dAdapter.Float((float) this.getPosicionFinal().getX(), 
-                (float) this.getPosicionFinal().getY(), 
-                (float) this.diametro, 
+        this.bacteria = new Ellipse2dAdapter.Float((float) this.getPosicionFinal().getX(),
+                (float) this.getPosicionFinal().getY(),
+                (float) this.diametro,
                 (float) this.diametro);
     }
 
@@ -71,12 +71,14 @@ public class SalmonellaTyphimurium implements Bacteria {
         // definimos en colores negros
         // Color colorInicial = new Color(0);
         this.colorBacteria = new Color(255);
+
     }
 
     @Override
     public void definirTamaño(double diametro) {
         // definiendo el diametro del elipse
         this.diametro = diametro;
+
     }
 
     @Override

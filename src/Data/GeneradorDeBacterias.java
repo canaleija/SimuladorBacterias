@@ -89,7 +89,7 @@ public class GeneradorDeBacterias {
                             new Color(0, 0, 0).getRGB());
                 }
                 break;
-            case "S.Tiphymurium":
+            case "S.Typhimurium":
                 SalmonellaTyphimurium stiphy;
                 for (int x = 0; x < this.numBacterias; x++) {
                     stiphy = new SalmonellaTyphimurium();
@@ -103,4 +103,3 @@ public class GeneradorDeBacterias {
         return buffer.getScaledInstance(300, 300, BufferedImage.TYPE_INT_RGB);
     }
 }
-

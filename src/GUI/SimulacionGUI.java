@@ -9,12 +9,13 @@ import Data.GeneradorDeBacterias;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author CANALEIJA
  */
-public class SimulacionGUI extends javax.swing.JFrame {
+public class SimulacionGUI extends javax.swing.JFrame { 
 
     /**
      * Creates new form SimulacionGUI
@@ -95,11 +96,9 @@ public class SimulacionGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jComboBox2, 0, 124, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,6 +135,8 @@ public class SimulacionGUI extends javax.swing.JFrame {
             .addComponent(jPanelBacterias, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jPanel2.getAccessibleContext().setAccessibleName("Parámetros");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -202,8 +203,12 @@ public class SimulacionGUI extends javax.swing.JFrame {
     private void generarBacterias() {
         String bacteria = this.jComboBox1.getSelectedItem().toString();
         int numeroBacterias = Integer.parseInt(this.jTxtNumBacterias.getText());
-        GeneradorDeBacterias aux = new GeneradorDeBacterias(numeroBacterias);
-
-        this.jLblImage.setIcon(new ImageIcon(aux.getImagenColonias(bacteria)));
+        
+        if(numeroBacterias >= 25 && numeroBacterias <= 250) {
+            GeneradorDeBacterias aux = new GeneradorDeBacterias(numeroBacterias);
+            this.jLblImage.setIcon(new ImageIcon(aux.getImagenColonias(bacteria)));
+        } else {
+            JOptionPane.showMessageDialog(jPanel2, "Una muestra válida tiene entre 25 y 250 colonias");
+        }
     }
 }

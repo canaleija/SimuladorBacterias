@@ -117,4 +117,3 @@ public class EscherichiaColi implements Bacteria{
     }
  
 }
-
