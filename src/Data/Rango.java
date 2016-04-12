@@ -49,4 +49,3 @@ public class Rango {
         this.colorFinal = colorFinal;
     }
 }
-

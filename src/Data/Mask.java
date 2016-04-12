@@ -66,8 +66,5 @@ public class Mask {
       private void construirMascara3x3() {
         this.mask = new int[][]{{0,1,0},{1,1,1},{0,1,0}};
    
-    }
-    
-    
-    
+    }    
 }
