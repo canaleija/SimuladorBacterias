@@ -20,4 +20,3 @@ public interface Bacteria {
    void definirTamaño(double diametro);
    void definirTiempoDuplicacion(double x1, double x2, double y1,double y2);
 }
-

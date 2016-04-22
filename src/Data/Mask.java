@@ -14,7 +14,6 @@ public class Mask {
   
     public enum Mascaras {TRESXTRES}
     
-    
     private int mask[][];
     
     private int n;

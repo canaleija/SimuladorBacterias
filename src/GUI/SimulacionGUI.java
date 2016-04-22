@@ -44,10 +44,10 @@ public class SimulacionGUI extends javax.swing.JFrame {
         jBtnGenerar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxBacteria = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
+        jComboBoxMedio = new javax.swing.JComboBox();
+        jTextFieldImagenes = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
 
@@ -74,6 +74,8 @@ public class SimulacionGUI extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Parametros"));
 
+        jTxtNumBacterias.setText("0");
+
         jBtnGenerar.setText("Generar");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -82,16 +84,17 @@ public class SimulacionGUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Bacteria");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "E. coli", "B. cereus", "S. aureus", "S. typhimurium", "Muestra mixta" }));
+        jComboBoxBacteria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "E. coli", "B. cereus", "S. aureus", "S. typhimurium", "Muestra mixta" }));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Medio de cultivo");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EMB", "Verde Brillante", "Baird Parker", "Yema de Huevo", "XLD", "Salmonella Shigella", "Sulfito de Bismuto" }));
+        jComboBoxMedio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EMB", "Verde Brillante", "Baird Parker", "Yema de Huevo", "XLD", "Salmonella Shigella", "Sulfito de Bismuto" }));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldImagenes.setText("0");
+        jTextFieldImagenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldImagenesActionPerformed(evt);
             }
         });
 
@@ -108,11 +111,11 @@ public class SimulacionGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jComboBoxBacteria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jComboBoxMedio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTextField1)
+            .addComponent(jTextFieldImagenes)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,15 +131,15 @@ public class SimulacionGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxBacteria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxMedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldImagenes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnGenerar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,9 +167,9 @@ public class SimulacionGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldImagenesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldImagenesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,8 +208,8 @@ public class SimulacionGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnGenerar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBoxBacteria;
+    private javax.swing.JComboBox jComboBoxMedio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,7 +218,7 @@ public class SimulacionGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelBacterias;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldImagenes;
     private javax.swing.JTextField jTxtNumBacterias;
     // End of variables declaration//GEN-END:variables
 
@@ -231,15 +234,19 @@ public class SimulacionGUI extends javax.swing.JFrame {
     }
 
     private void generarBacterias() {
-        String bacteria = this.jComboBox1.getSelectedItem().toString();
-        String medio = this.jComboBox2.getSelectedItem().toString();
+        String bacteria = this.jComboBoxBacteria.getSelectedItem().toString();
+        String medio = this.jComboBoxMedio.getSelectedItem().toString();
+        int imagenes = Integer.parseInt(this.jTextFieldImagenes.getText());
         int numeroBacterias = Integer.parseInt(this.jTxtNumBacterias.getText());
         
         if(numeroBacterias >= 25 && numeroBacterias <= 250) {
             GeneradorDeBacterias aux = new GeneradorDeBacterias(numeroBacterias);
-            this.jLblImage.setIcon(new ImageIcon(aux.getImagenColonias(bacteria, medio)));
+            this.jLblImage.setIcon(new ImageIcon(aux.getImagenColonias(bacteria, medio, imagenes)));
         } else {
             JOptionPane.showMessageDialog(jPanel2, "Una muestra válida tiene entre 25 y 250 colonias");
+        }
+        if(this.jTextFieldImagenes.getText().equals("0")) {
+            JOptionPane.showMessageDialog(jPanel2, "Ingresa el número de imágenes a generar");
         }
     }
 }

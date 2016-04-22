@@ -13,6 +13,7 @@ import java.awt.Color;
  */
 public class BairdParker implements Medio{
     private Color colorMedio;
+    private Color colorStiphy;
     
     public BairdParker() {
         definirColor();
@@ -27,10 +28,25 @@ public class BairdParker implements Medio{
         colorMedio = new Color(color);
     }
 
+    public void definirColorStiphy() {
+        int r = 255;
+        int g = 253;
+        int b = 255;
+        int color = (r << 16) | (g << 8) | b;
+        colorStiphy = new Color(color);
+    }
+
     /**
      * @return the colorMedio
      */
     public Color getColorMedio() {
         return colorMedio;
     } 
+
+    /**
+     * @return the colorStiphy
+     */
+    public Color getColorStiphy() {
+        return colorStiphy;
+    }
 }
