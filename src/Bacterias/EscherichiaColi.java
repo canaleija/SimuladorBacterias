@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
@@ -75,7 +76,24 @@ public class EscherichiaColi implements Bacteria {
         // definiendo el diametro del elipse
         this.diametro = diametro;
     }
-
+    
+    @Override
+    public void dibujarBacteria (BufferedImage bi,int color){
+      // construir maskara con respecto al tamaño
+        for (int x= (int)this.posicionFinal.getX();x < this.diametro+(int)this.posicionFinal.getX();x++)   
+           for (int y= (int)this.posicionFinal.getY();y < this.diametro+(int)this.posicionFinal.getY();y++){
+               Point2D nuevoPunto = new Point(x, y);
+               
+               if (validar(nuevoPunto)){
+                 bi.setRGB(x, y, color);
+               }
+               
+             
+       
+           }   
+           
+    
+    }
     @Override
     public void definirTiempoDuplicacion(double x1, double x2, double y1, double y2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

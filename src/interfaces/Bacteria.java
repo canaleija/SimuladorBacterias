@@ -7,6 +7,7 @@ package interfaces;
 
 import Data.Rango;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -19,4 +20,6 @@ public interface Bacteria {
    void definirColor(Rango rangoColor);
    void definirTamaño(double diametro);
    void definirTiempoDuplicacion(double x1, double x2, double y1,double y2);
+   void dibujarBacteria (BufferedImage bi,int color);
+
 }

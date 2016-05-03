@@ -98,10 +98,11 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 emb.definirColorEcoli();
                 ecoli = new EscherichiaColi();
-                ecoli.definirTamaño(100);
-                buffer.setRGB((int) ecoli.getPosicionFinal().getX(),
-                        (int) ecoli.getPosicionFinal().getY(),
-                        emb.getColorEcoli().getRGB());
+                ecoli.definirTamaño(8);
+                ecoli.dibujarBacteria(buffer,emb.getColorEcoli().getRGB());
+                //buffer.setRGB((int) ecoli.getPosicionFinal().getX(),
+                //        (int) ecoli.getPosicionFinal().getY(),
+                //        emb.getColorEcoli().getRGB());
             }
         }
 
