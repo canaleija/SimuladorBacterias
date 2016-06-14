@@ -29,9 +29,9 @@ public class BairdParker implements Medio{
     }
 
     public void definirColorStiphy() {
-        int r = 255;
-        int g = 253;
-        int b = 255;
+        int r = 0;
+        int g = 2;
+        int b = 0;
         int color = (r << 16) | (g << 8) | b;
         colorStiphy = new Color(color);
     }

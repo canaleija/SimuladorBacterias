@@ -22,25 +22,25 @@ public class VerdeBrillante implements Medio{
 
     @Override
     public void definirColor() {
-        int rojo = 187;
-        int verde = 122;
-        int azul = 42;
+        int rojo = 202;
+        int verde = 133;
+        int azul = 78;
         int color = (rojo << 16) | (verde << 8) | azul;
         colorMedio = new Color(color);
     }
     
     public void definirColorEcoli() {
-        int r = 171;
-        int g = 177;
-        int b = 97;
+        int r = 203;
+        int g = 103;
+        int b = 88;
         int color = (r << 16) | (g << 8) | b;
         colorEcoli = new Color(color);
     }
 
     public void definirColorStiphy() {
         int r = 255;
-        int g = 191;
-        int b = 165;
+        int g = 190;
+        int b = 152;
         int color = (r << 16) | (g << 8) | b;
         colorStiphy = new Color(color);
     }

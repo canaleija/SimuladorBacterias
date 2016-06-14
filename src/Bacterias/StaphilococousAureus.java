@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
@@ -93,6 +94,19 @@ public class StaphilococousAureus implements Bacteria {
         } else {
             return false;
         }
+    }
+    
+    @Override
+    public void dibujarBacteria (BufferedImage bi,int color){
+      // construir maskara con respecto al tamaño
+        for (int x= (int)this.posicionFinal.getX();x < this.diametro+(int)this.posicionFinal.getX();x++)   
+           for (int y= (int)this.posicionFinal.getY();y < this.diametro+(int)this.posicionFinal.getY();y++){
+               Point2D nuevoPunto = new Point(x, y);
+               
+               if (validar(nuevoPunto)){
+                 bi.setRGB(x, y, color);
+               }
+           }   
     }
 
     @Override

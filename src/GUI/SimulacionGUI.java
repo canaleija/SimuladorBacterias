@@ -9,6 +9,7 @@ import Data.GeneradorDeBacterias;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -44,12 +45,14 @@ public class SimulacionGUI extends javax.swing.JFrame {
         jBtnGenerar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBoxBacteria = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxMedio = new javax.swing.JComboBox();
         jTextFieldImagenes = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        ecoliBox = new javax.swing.JCheckBox();
+        tiphyBox = new javax.swing.JCheckBox();
+        cereusBox = new javax.swing.JCheckBox();
+        aureusBox = new javax.swing.JCheckBox();
 
         jButton1.setText("jButton1");
 
@@ -84,12 +87,10 @@ public class SimulacionGUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Bacteria");
 
-        jComboBoxBacteria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "E. coli", "B. cereus", "S. aureus", "S. typhimurium", "Muestra mixta" }));
-
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Medio de cultivo");
 
-        jComboBoxMedio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EMB", "Verde Brillante", "Baird Parker", "Yema de Huevo", "XLD", "Salmonella Shigella", "Sulfito de Bismuto" }));
+        jComboBoxMedio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EMB", "Verde Brillante", "Baird Parker", "Yema de Huevo", "Salmonella Shigella" }));
 
         jTextFieldImagenes.setText("0");
         jTextFieldImagenes.addActionListener(new java.awt.event.ActionListener() {
@@ -101,25 +102,40 @@ public class SimulacionGUI extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Número de imágenes");
 
+        ecoliBox.setText("E. coli");
+
+        tiphyBox.setText("S. typhimurium");
+
+        cereusBox.setText("B. cereus");
+
+        aureusBox.setText("S. aureus");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jBtnGenerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jTxtNumBacterias)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jComboBoxBacteria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jComboBoxMedio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jTextFieldImagenes)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(ecoliBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tiphyBox))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cereusBox)
+                        .addGap(14, 14, 14)
+                        .addComponent(aureusBox)
+                        .addGap(0, 16, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,9 +146,15 @@ public class SimulacionGUI extends javax.swing.JFrame {
                 .addComponent(jTxtNumBacterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxBacteria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ecoliBox)
+                    .addComponent(tiphyBox))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cereusBox)
+                    .addComponent(aureusBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxMedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,8 +164,7 @@ public class SimulacionGUI extends javax.swing.JFrame {
                 .addComponent(jTextFieldImagenes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnGenerar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,9 +227,11 @@ public class SimulacionGUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox aureusBox;
+    private javax.swing.JCheckBox cereusBox;
+    private javax.swing.JCheckBox ecoliBox;
     private javax.swing.JButton jBtnGenerar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBoxBacteria;
     private javax.swing.JComboBox jComboBoxMedio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -217,9 +240,9 @@ public class SimulacionGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLblImage;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelBacterias;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTextField jTextFieldImagenes;
     private javax.swing.JTextField jTxtNumBacterias;
+    private javax.swing.JCheckBox tiphyBox;
     // End of variables declaration//GEN-END:variables
 
     private void initListeners() {
@@ -234,7 +257,21 @@ public class SimulacionGUI extends javax.swing.JFrame {
     }
 
     private void generarBacterias() {
-        String bacteria = this.jComboBoxBacteria.getSelectedItem().toString();
+        ArrayList<String> bacteria = new ArrayList();
+        
+        if(ecoliBox.isSelected()) {
+            bacteria.add("E. coli");
+        }
+        if(tiphyBox.isSelected()) {
+            bacteria.add("S. typhimurium");
+        }
+        if(cereusBox.isSelected()) {
+            bacteria.add("B. cereus");
+        }
+        if(aureusBox.isSelected()) {
+            bacteria.add("S. aureus");
+        }
+        
         String medio = this.jComboBoxMedio.getSelectedItem().toString();
         int imagenes = Integer.parseInt(this.jTextFieldImagenes.getText());
         int numeroBacterias = Integer.parseInt(this.jTxtNumBacterias.getText());

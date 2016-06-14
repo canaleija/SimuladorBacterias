@@ -87,13 +87,9 @@ public class EscherichiaColi implements Bacteria {
                if (validar(nuevoPunto)){
                  bi.setRGB(x, y, color);
                }
-               
-             
-       
            }   
-           
-    
     }
+    
     @Override
     public void definirTiempoDuplicacion(double x1, double x2, double y1, double y2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -21,6 +21,10 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -33,7 +37,7 @@ public class GeneradorDeBacterias {
     private Image imagenColonias;
     private int numBacterias;
     private int numImagenes;
-    private String bacteria;
+    private ArrayList<String> bacteria;
     private String medio;
     private BufferedImage buffer;
 
@@ -44,8 +48,9 @@ public class GeneradorDeBacterias {
     /**
      * @return the imagenColonias
      */
-    public Image getImagenColonias(String bacteria, String medio, int numImagenes) {
-        String nombreBacteria = bacteria;
+    public Image getImagenColonias(ArrayList<String> bacteria, String medio, int numImagenes) {
+        ArrayList<String> nombreBacteria = bacteria;
+        System.out.println(nombreBacteria);
         String nombreMedio = medio;
         int imagenes = numImagenes;
         this.imagenColonias = generaImagen(nombreBacteria, nombreMedio, imagenes);
@@ -59,7 +64,7 @@ public class GeneradorDeBacterias {
         return numBacterias;
     }
 
-    private Image generaImagen(String nombreBacteria, String nombreMedio, int numImagenes) {
+    private Image generaImagen(ArrayList<String> nombreBacteria, String nombreMedio, int numImagenes) {
         this.bacteria = nombreBacteria;
         this.medio = nombreMedio;
         this.numImagenes = numImagenes;
@@ -72,22 +77,91 @@ public class GeneradorDeBacterias {
     }
 
     public void generarImagen() {
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String nombreDir = "Muestras_" + bacteria + "_" + dateFormat.format(date);
+        File dir = new File(nombreDir);
+        dir.mkdir();
         
-        for(int x = 1; x <= numImagenes; x++) {
-            try {
-                generarBacteria(bacteria, medio);
-                // retrieve image
-                String nombreImagen = "muestra_" + bacteria + "_" + medio + "_" + x + ".png";
-                File outputfile = new File(nombreImagen);
-                ImageIO.write(buffer, "png", outputfile);
-            } catch (IOException e) {}
+        if (bacteria.size() == 1) {
+            for (int x = 1; x <= numImagenes; x++) {
+                try {
+                    generarBacteria(bacteria, medio);
+                    // retrieve image
+                    String nombreImagen = numBacterias + "_" + bacteria + "_" + medio + "_" + x + ".png";
+                    File outputfile = new File(dir, nombreImagen);
+                    ImageIO.write(buffer, "png", outputfile);
+                } catch (IOException e) {
+                }
+            }
+        } else {
+            generarMixta(bacteria, medio);
+        }
+    }
+    
+    
+    public void generarMixta(ArrayList<String> bacterias, String medio) {
+        
+        if (medio.equals("EMB") && bacteria.contains("E. coli") && bacteria.contains("S. typhimurium")) {
+            EMB emb = new EMB();
+            EscherichiaColi ecoli;
+            SalmonellaTyphimurium typhi;
+          
+            for (int x = 0; x < buffer.getWidth(); x++) {
+                for (int y = 0; y < buffer.getHeight(); y++) {
+                    buffer.setRGB(x, y, emb.getColorMedio().getRGB());
+                }
+            }
+            
+            int rand = 1 + (int)(Math.random() * ((numBacterias - 1) + 1));
+            
+            for (int x = 0; x < rand; x++) {
+                emb.definirColorEcoli();
+                ecoli = new EscherichiaColi();
+                ecoli.definirTamaño(3);
+                ecoli.dibujarBacteria(buffer, emb.getColorEcoli().getRGB());
+            }
+            for (int x = 0; x < numBacterias - rand; x++) {
+                emb.definirColorStiphy();
+                typhi = new SalmonellaTyphimurium();
+                typhi.definirTamaño(3);
+                typhi.dibujarBacteria(buffer, emb.getColorStiphy().getRGB());
+            }
+        }
+        
+        if (medio.equals("Verde Brillante") && bacteria.contains("E. coli") && bacteria.contains("S. typhimurium")) {
+            VerdeBrillante verdeBrillante = new VerdeBrillante();
+            EscherichiaColi ecoli;
+            SalmonellaTyphimurium typhi;
+          
+            for (int x = 0; x < buffer.getWidth(); x++) {
+                for (int y = 0; y < buffer.getHeight(); y++) {
+                    buffer.setRGB(x, y, verdeBrillante.getColorMedio().getRGB());
+                }
+            }
+            
+            int rand = 1 + (int)(Math.random() * ((numBacterias - 1) + 1));
+            
+            for (int x = 0; x < rand; x++) {
+                verdeBrillante.definirColorEcoli();
+                ecoli = new EscherichiaColi();
+                ecoli.definirTamaño(3);
+                ecoli.dibujarBacteria(buffer, verdeBrillante.getColorEcoli().getRGB());
+            }
+            for (int x = 0; x < numBacterias - rand; x++) {
+                verdeBrillante.definirColorStiphy();
+                typhi = new SalmonellaTyphimurium();
+                typhi.definirTamaño(3);
+                typhi.dibujarBacteria(buffer, verdeBrillante.getColorStiphy().getRGB());
+            }
         }
     }
 
-    public void generarBacteria(String bacteria, String medio) {
+    public void generarBacteria(ArrayList<String> bacteria, String medio) {
 
         // EMB
-        if (medio.equals("EMB") && bacteria.equals("E. coli")) {
+        if (medio.equals("EMB") && bacteria.contains("E. coli")) {
             EMB emb = new EMB();
             EscherichiaColi ecoli;
             for (int x = 0; x < buffer.getWidth(); x++) {
@@ -98,15 +172,12 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 emb.definirColorEcoli();
                 ecoli = new EscherichiaColi();
-                ecoli.definirTamaño(8);
-                ecoli.dibujarBacteria(buffer,emb.getColorEcoli().getRGB());
-                //buffer.setRGB((int) ecoli.getPosicionFinal().getX(),
-                //        (int) ecoli.getPosicionFinal().getY(),
-                //        emb.getColorEcoli().getRGB());
+                ecoli.definirTamaño(3);
+                ecoli.dibujarBacteria(buffer, emb.getColorEcoli().getRGB());
             }
         }
 
-        if (medio.equals("EMB") && bacteria.equals("S. typhimurium")) {
+        if (medio.equals("EMB") && bacteria.contains("S. typhimurium")) {
             EMB emb = new EMB();
             SalmonellaTyphimurium stiphy;
             for (int x = 0; x < buffer.getWidth(); x++) {
@@ -117,15 +188,13 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 emb.definirColorStiphy();
                 stiphy = new SalmonellaTyphimurium();
-                stiphy.definirTamaño(100);
-                buffer.setRGB((int) stiphy.getPosicionFinal().getX(),
-                        (int) stiphy.getPosicionFinal().getY(),
-                        emb.getColorStiphy().getRGB());
+                stiphy.definirTamaño(5);
+                stiphy.dibujarBacteria(buffer, emb.getColorStiphy().getRGB());
             }
         }
 
         // Salmonella-Shigella
-        if (medio.equals("Salmonella Shigella") && bacteria.equals("E. coli")) {
+        if (medio.equals("Salmonella Shigella") && bacteria.contains("E. coli")) {
             SalmonellaShigella ss = new SalmonellaShigella();
             EscherichiaColi ecoli;
             for (int x = 0; x < buffer.getWidth(); x++) {
@@ -136,14 +205,12 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 ss.definirColorEcoli();
                 ecoli = new EscherichiaColi();
-                ecoli.definirTamaño(100);
-                buffer.setRGB((int) ecoli.getPosicionFinal().getX(),
-                        (int) ecoli.getPosicionFinal().getY(),
-                        ss.getColorEcoli().getRGB());
+                ecoli.definirTamaño(5);
+                ecoli.dibujarBacteria(buffer, ss.getColorStiphy().getRGB());
             }
         }
 
-        if (medio.equals("Salmonella Shigella") && bacteria.equals("S. typhimurium")) {
+        if (medio.equals("Salmonella Shigella") && bacteria.contains("S. typhimurium")) {
             SalmonellaShigella ss = new SalmonellaShigella();
             SalmonellaTyphimurium stiphy;
             for (int x = 0; x < buffer.getWidth(); x++) {
@@ -154,15 +221,13 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 ss.definirColorStiphy();
                 stiphy = new SalmonellaTyphimurium();
-                stiphy.definirTamaño(100);
-                buffer.setRGB((int) stiphy.getPosicionFinal().getX(),
-                        (int) stiphy.getPosicionFinal().getY(),
-                        ss.getColorStiphy().getRGB());
+                stiphy.definirTamaño(5);
+                stiphy.dibujarBacteria(buffer, ss.getColorStiphy().getRGB());
             }
         }
 
         //Verde Brillante
-        if (medio.equals("Verde Brillante") && bacteria.equals("E. coli")) {
+        if (medio.equals("Verde Brillante") && bacteria.contains("E. coli")) {
             VerdeBrillante vb = new VerdeBrillante();
             EscherichiaColi ecoli;
             for (int x = 0; x < buffer.getWidth(); x++) {
@@ -173,14 +238,11 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 vb.definirColorEcoli();
                 ecoli = new EscherichiaColi();
-                ecoli.definirTamaño(100);
-                buffer.setRGB((int) ecoli.getPosicionFinal().getX(),
-                        (int) ecoli.getPosicionFinal().getY(),
-                        vb.getColorEcoli().getRGB());
+                ecoli.definirTamaño(3);
+                ecoli.dibujarBacteria(buffer, vb.getColorEcoli().getRGB());
             }
         }
-
-        if (medio.equals("Verde Brillante") && bacteria.equals("S. typhimurium")) {
+        if (medio.equals("Verde Brillante") && bacteria.contains("S. typhimurium")) {
             VerdeBrillante vb = new VerdeBrillante();
             SalmonellaTyphimurium stiphy;
             for (int x = 0; x < buffer.getWidth(); x++) {
@@ -191,15 +253,14 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 vb.definirColorStiphy();
                 stiphy = new SalmonellaTyphimurium();
-                stiphy.definirTamaño(100);
-                buffer.setRGB((int) stiphy.getPosicionFinal().getX(),
-                        (int) stiphy.getPosicionFinal().getY(),
-                        vb.getColorStiphy().getRGB());
+                stiphy.definirTamaño(3);
+
+                stiphy.dibujarBacteria(buffer, vb.getColorStiphy().getRGB());
             }
         }
 
         //Baird Parker
-        if (medio.equals("Baird Parker") && bacteria.equals("S. typhimurium")) {
+        if (medio.equals("Baird Parker") && bacteria.contains("S. aureus")) {
             BairdParker bp = new BairdParker();
             SalmonellaTyphimurium stiphy;
             for (int x = 0; x < buffer.getWidth(); x++) {
@@ -210,15 +271,13 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 bp.definirColorStiphy();
                 stiphy = new SalmonellaTyphimurium();
-                stiphy.definirTamaño(100);
-                buffer.setRGB((int) stiphy.getPosicionFinal().getX(),
-                        (int) stiphy.getPosicionFinal().getY(),
-                        bp.getColorStiphy().getRGB());
+                stiphy.definirTamaño(2);
+                stiphy.dibujarBacteria(buffer, bp.getColorStiphy().getRGB());
             }
         }
 
         //Baird Parker
-        if (medio.equals("Yema de Huevo") && bacteria.equals("B. cereus")) {
+        if (medio.equals("Yema de Huevo") && bacteria.contains("B. cereus")) {
             YemaHuevo yh = new YemaHuevo();
             BacillusCereus bcereus;
             for (int x = 0; x < buffer.getWidth(); x++) {
@@ -229,10 +288,8 @@ public class GeneradorDeBacterias {
             for (int x = 0; x < this.numBacterias; x++) {
                 yh.definirColorBcereus();
                 bcereus = new BacillusCereus();
-                bcereus.definirTamaño(100);
-                buffer.setRGB((int) bcereus.getPosicionFinal().getX(),
-                        (int) bcereus.getPosicionFinal().getY(),
-                        yh.getColorBcereus().getRGB());
+                bcereus.definirTamaño(15);
+                bcereus.dibujarBacteria(buffer, yh.getColorBcereus().getRGB());
             }
         }
     }
