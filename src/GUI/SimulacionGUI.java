@@ -6,7 +6,6 @@
 package GUI;
 
 import Data.GeneradorDeBacterias;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,7 +16,9 @@ import javax.swing.JOptionPane;
  *
  * @author CANALEIJA
  */
-public class SimulacionGUI extends javax.swing.JFrame { 
+public class SimulacionGUI extends javax.swing.JFrame {
+
+    GeneradorDeBacterias aux;
 
     /**
      * Creates new form SimulacionGUI
@@ -25,7 +26,9 @@ public class SimulacionGUI extends javax.swing.JFrame {
     public SimulacionGUI() {
         initComponents();
         initListeners();
+        cambiarEstado();
 
+        aux = new GeneradorDeBacterias(Integer.parseInt(jTxtNumBacterias.getText()));
     }
 
     /**
@@ -53,10 +56,13 @@ public class SimulacionGUI extends javax.swing.JFrame {
         tiphyBox = new javax.swing.JCheckBox();
         cereusBox = new javax.swing.JCheckBox();
         aureusBox = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextCount = new javax.swing.JTextArea();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanelBacterias.setPreferredSize(new java.awt.Dimension(300, 300));
 
@@ -66,13 +72,13 @@ public class SimulacionGUI extends javax.swing.JFrame {
             jPanelBacteriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBacteriasLayout.createSequentialGroup()
                 .addComponent(jLblImage)
-                .addGap(0, 300, Short.MAX_VALUE))
+                .addGap(0, 510, Short.MAX_VALUE))
         );
         jPanelBacteriasLayout.setVerticalGroup(
             jPanelBacteriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBacteriasLayout.createSequentialGroup()
                 .addComponent(jLblImage)
-                .addGap(0, 350, Short.MAX_VALUE))
+                .addGap(0, 520, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Parametros"));
@@ -83,16 +89,20 @@ public class SimulacionGUI extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Número de colonias");
+        jLabel1.setFocusable(false);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Bacteria");
+        jLabel2.setFocusable(false);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Medio de cultivo");
+        jLabel3.setFocusable(false);
 
         jComboBoxMedio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EMB", "Verde Brillante", "Baird Parker", "Yema de Huevo", "Salmonella Shigella" }));
+        jComboBoxMedio.setFocusable(false);
 
-        jTextFieldImagenes.setText("0");
+        jTextFieldImagenes.setText("1");
         jTextFieldImagenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldImagenesActionPerformed(evt);
@@ -101,14 +111,30 @@ public class SimulacionGUI extends javax.swing.JFrame {
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Número de imágenes");
+        jLabel4.setFocusable(false);
 
         ecoliBox.setText("E. coli");
+        ecoliBox.setFocusable(false);
 
         tiphyBox.setText("S. typhimurium");
+        tiphyBox.setFocusable(false);
 
         cereusBox.setText("B. cereus");
+        cereusBox.setFocusable(false);
 
         aureusBox.setText("S. aureus");
+        aureusBox.setFocusable(false);
+
+        jTextCount.setEditable(false);
+        jTextCount.setBackground(new java.awt.Color(240, 240, 240));
+        jTextCount.setColumns(3);
+        jTextCount.setForeground(new java.awt.Color(240, 240, 240));
+        jTextCount.setRows(3);
+        jTextCount.setBorder(null);
+        jTextCount.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextCount.setEnabled(false);
+        jTextCount.setFocusable(false);
+        jScrollPane1.setViewportView(jTextCount);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -136,6 +162,7 @@ public class SimulacionGUI extends javax.swing.JFrame {
                         .addComponent(aureusBox)
                         .addGap(0, 16, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,6 +172,14 @@ public class SimulacionGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTxtNumBacterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldImagenes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxMedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -154,14 +189,8 @@ public class SimulacionGUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cereusBox)
                     .addComponent(aureusBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxMedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldImagenes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnGenerar)
                 .addContainerGap())
@@ -172,14 +201,13 @@ public class SimulacionGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelBacterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelBacterias, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelBacterias, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(jPanelBacterias, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -240,50 +268,126 @@ public class SimulacionGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLblImage;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelBacterias;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextCount;
     private javax.swing.JTextField jTextFieldImagenes;
     private javax.swing.JTextField jTxtNumBacterias;
     private javax.swing.JCheckBox tiphyBox;
     // End of variables declaration//GEN-END:variables
 
     private void initListeners() {
-
         this.jBtnGenerar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 generarBacterias();
+                JOptionPane.showMessageDialog(jPanel2, "Se creó una carpeta con las muestras en " + aux.dirPath);
             }
         });
 
+        this.jComboBoxMedio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cambiarEstado();
+            }
+        });
+    }
+
+    private void cambiarEstado() {
+
+        String medio = this.jComboBoxMedio.getSelectedItem().toString();
+
+        if (medio.equals("EMB") || medio.equals("Verde Brillante") || medio.equals("Salmonella Shigella")) {
+            ecoliBox.setEnabled(true);
+            tiphyBox.setEnabled(true);
+            aureusBox.setEnabled(false);
+            cereusBox.setEnabled(false);
+
+            ecoliBox.setSelected(false);
+            tiphyBox.setSelected(false);
+            aureusBox.setSelected(false);
+            cereusBox.setSelected(false);
+
+        }
+        if (medio.equals("Baird Parker")) {
+            ecoliBox.setEnabled(false);
+            tiphyBox.setEnabled(false);
+            aureusBox.setEnabled(true);
+            cereusBox.setEnabled(false);
+
+            ecoliBox.setSelected(false);
+            tiphyBox.setSelected(false);
+            aureusBox.setSelected(false);
+            cereusBox.setSelected(false);
+        }
+        if (medio.equals("Yema de Huevo")) {
+            ecoliBox.setEnabled(false);
+            tiphyBox.setEnabled(false);
+            aureusBox.setEnabled(false);
+            cereusBox.setEnabled(true);
+
+            ecoliBox.setSelected(false);
+            tiphyBox.setSelected(false);
+            aureusBox.setSelected(false);
+            cereusBox.setSelected(false);
+        }
     }
 
     private void generarBacterias() {
         ArrayList<String> bacteria = new ArrayList();
-        
-        if(ecoliBox.isSelected()) {
-            bacteria.add("E. coli");
-        }
-        if(tiphyBox.isSelected()) {
-            bacteria.add("S. typhimurium");
-        }
-        if(cereusBox.isSelected()) {
-            bacteria.add("B. cereus");
-        }
-        if(aureusBox.isSelected()) {
-            bacteria.add("S. aureus");
-        }
-        
         String medio = this.jComboBoxMedio.getSelectedItem().toString();
         int imagenes = Integer.parseInt(this.jTextFieldImagenes.getText());
         int numeroBacterias = Integer.parseInt(this.jTxtNumBacterias.getText());
-        
-        if(numeroBacterias >= 25 && numeroBacterias <= 250) {
-            GeneradorDeBacterias aux = new GeneradorDeBacterias(numeroBacterias);
-            this.jLblImage.setIcon(new ImageIcon(aux.getImagenColonias(bacteria, medio, imagenes)));
+        aux = new GeneradorDeBacterias(numeroBacterias);
+
+        if (ecoliBox.isSelected()) {
+            bacteria.add("E. coli");
+        }
+        if (tiphyBox.isSelected()) {
+            bacteria.add("S. typhimurium");
+        }
+        if (cereusBox.isSelected()) {
+            bacteria.add("B. cereus");
+        }
+        if (aureusBox.isSelected()) {
+            bacteria.add("S. aureus");
+        }
+
+        if (numeroBacterias >= 25 && numeroBacterias <= 250) {
+            if (imagenes > 0) {
+                if (ecoliBox.isSelected() || tiphyBox.isSelected() || aureusBox.isSelected() || cereusBox.isSelected()) {
+                    this.jLblImage.setIcon(new ImageIcon(aux.getImagenColonias(bacteria, medio, imagenes)));
+                } else {
+                    JOptionPane.showMessageDialog(jPanel2, "Selecciona una bacteria");
+                }
+            } else {
+                JOptionPane.showMessageDialog(jPanel2, "Debes generar al menos una imagen");
+            }
         } else {
             JOptionPane.showMessageDialog(jPanel2, "Una muestra válida tiene entre 25 y 250 colonias");
         }
-        if(this.jTextFieldImagenes.getText().equals("0")) {
-            JOptionPane.showMessageDialog(jPanel2, "Ingresa el número de imágenes a generar");
+
+        mostrarResultado();
+    }
+
+    private void mostrarResultado() {
+
+        //Verificar qué checkbox está seleccionado
+        if (ecoliBox.isSelected()) {
+            jTextCount.setText(jTxtNumBacterias.getText().toString() + " UFC de " + ecoliBox.getText() + "\n");
+        }
+        if (tiphyBox.isSelected()) {
+            jTextCount.setText(jTxtNumBacterias.getText().toString() + " UFC de " + tiphyBox.getText() + "\n");
+        }
+        if (aureusBox.isSelected()) {
+            jTextCount.setText(jTxtNumBacterias.getText().toString() + " UFC de " + aureusBox.getText() + "\n");
+        }
+        if (cereusBox.isSelected()) {
+            jTextCount.setText(jTxtNumBacterias.getText().toString() + " UFC de " + cereusBox.getText() + "\n");
+        }
+        if (ecoliBox.isSelected() && tiphyBox.isSelected()) {
+            jTextCount.setText(aux.getNumBact1() + " UFC de " + ecoliBox.getText() + "\n");
+            jTextCount.setText(jTextCount.getText() + aux.getNumBact2() + " UFC de " + tiphyBox.getText() + "\n");
+            jTextCount.setText(jTextCount.getText() + "Total: " + jTxtNumBacterias.getText().toString() + " UFC");
         }
     }
 }
