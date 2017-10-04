@@ -281,6 +281,7 @@ public class SimulacionGUI extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 generarBacterias();
                 JOptionPane.showMessageDialog(jPanel2, "Se creó una carpeta con las muestras en " + aux.dirPath);
+                
             }
         });
 
